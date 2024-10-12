@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 
 import './goodsList.scss';
 
-const GoodsList = () => {
+const GoodsList = (props) => {
     const [offset, setOffset] = useState(0);
     const [goods, setGoods] = useState([]);
     const [goodsEnded, setGoodsEnded] = useState(false);
 
     const {getAllGoods} = useGoodsService();
+
+    console.log('render goodsList');
 
     useEffect(() => { // mounting
         getAllGoods(offset)
@@ -17,7 +19,7 @@ const GoodsList = () => {
     }, []); 
 
     const addToCart = (goodsId) => {
-        console.log(goodsId);
+        props.addNewItemToCart(goods[goodsId]);
     }
 
     const onReload = () => {
@@ -27,7 +29,7 @@ const GoodsList = () => {
     }
 
     const renderElements = () => {
-        const items = goods.map((item) => {
+        const items = goods.map((item, i) => {
             return (
                 <li key={item.id} className='goods-item' >
                     <div className="goods-item__image">
@@ -41,7 +43,7 @@ const GoodsList = () => {
                     </div>
                     <button 
                         className='item-btn'
-                        onClick={() => addToCart(item.id)}>
+                        onClick={() => addToCart(i)}>
                         Добавить в корзину
                     </button>
                 </li>

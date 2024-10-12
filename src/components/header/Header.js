@@ -1,11 +1,13 @@
 import Cart from '../cart/Cart';
 import './header.scss';
 
-const Header = () => {
+const Header = (props) => {
+    console.log('render header');
+
     return (
         <header>
             <div className="container">
-                <Cart/>
+                <Cart newCartSum = {props.newCartSum} newCartCount={props.newCartCount}/>
                 <h1>Каталог товаров</h1>
             </div>
         </header>
