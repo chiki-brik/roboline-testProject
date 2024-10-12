@@ -1,8 +1,17 @@
+@import './variables.scss';
+
 * {
     box-sizing: border-box; // чтобы ширина и высота контента включали в себя границы и отступы
+    margin: 0;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1250px;
     margin: 0 auto;
+}
+
+ul, li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }

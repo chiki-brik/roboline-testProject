@@ -1,0 +1,44 @@
+@import './../../style/variables.scss';
+
+button {
+    color: white;
+    background-color: $main-color;
+    //margin: 0 auto;
+    &.item-btn {
+        
+    }
+    &.reload-btn {
+        width: 200px;
+        height: 50px;
+    }
+}
+
+.goods-list {
+    margin-top: 20px;
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.goods-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .goods-item {
+        width: 300px;
+        margin: 10px 20px;
+        border: solid 1px $main-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__price {
+            display: inline-block;
+            text-align: end;
+        }
+    }
+}
+
+
