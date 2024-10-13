@@ -1,23 +1,42 @@
+import { useEffect, useState } from "react";
 import Header from "../header/Header";
 import GoodsList from "../goodsList/GoodsList";
-import './app.scss';
 import Footer from "../footer/Footer";
-import { useState } from "react";
+
+import './app.scss';
+
 
 const App = () => {
+
     const [itemsInCart, setItemsInCart] = useState(0);
     const [sumInCart, setSumInCart] = useState(0);
+
+    useEffect(() => { // mounting
+
+        const goodsInCart = JSON.parse(localStorage.getItem('cartItems'));
+
+        if (!goodsInCart) { // пустой localStorage
+            localStorage.setItem('cartItems', JSON.stringify([]));
+        } else {
+            let sum = 0;
+            let count = 0;
+
+            for (let item of goodsInCart) {
+                count++;
+                sum += item.price;
+            }
+
+            setItemsInCart(count);
+            setSumInCart(sum);
+        }
+    }, []);
 
     console.log('render app');
 
     const addNewItemToCart = (item) => {
-        if (!itemsInCart) {
-            localStorage.setItem('cartItems', JSON.stringify([item]));
-        } else {
-            const goodsInCart = JSON.parse(localStorage.getItem('cartItems'));
-            goodsInCart.push(item);
-            localStorage.setItem('cartItems', JSON.stringify(goodsInCart));
-        }
+        const goodsInCart = JSON.parse(localStorage.getItem('cartItems'));
+        goodsInCart.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(goodsInCart));
 
         setItemsInCart(itemsInCart => itemsInCart + 1);
         setSumInCart(sumInCart => sumInCart + item.price);

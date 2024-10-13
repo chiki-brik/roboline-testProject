@@ -39,7 +39,7 @@ const GoodsList = (props) => {
                         {item.name}
                     </div>
                     <div className="goods-item__price">
-                        {item.price}
+                        {item.price} &#8381;
                     </div>
                     <button 
                         className='item-btn'

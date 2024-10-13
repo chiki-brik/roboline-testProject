@@ -7,8 +7,10 @@ const Header = (props) => {
     return (
         <header>
             <div className="container">
-                <Cart newCartSum = {props.newCartSum} newCartCount={props.newCartCount}/>
-                <h1>Каталог товаров</h1>
+                <div className="header">
+                    <h1>Каталог товаров</h1>
+                    <Cart newCartSum = {props.newCartSum} newCartCount={props.newCartCount}/>
+                </div>
             </div>
         </header>
     )

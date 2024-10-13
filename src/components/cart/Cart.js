@@ -9,17 +9,15 @@ const Cart = (props) => {
 
     return (
         <div className="cart">
-            <div className="container">
-                <div className="cart-wrapper">
-                    <div className="cart-count">
-                        {totalCount}
-                    </div>
-                    <div className="cart-img">
-                        <img src={cartImage} alt="shopping cart"/>
-                    </div>
-                    <div className="cart-sum">
-                        {totalSum} &#8381;
-                    </div>
+            <div className="cart-wrapper">
+                <div id='count' className="cart-count">
+                    {totalCount}
+                </div>
+                <div id='img' className="cart-img">
+                    <img src={cartImage} alt="shopping cart"/>
+                </div>
+                <div id='sum' className="cart-sum">
+                    {totalSum} &#8381;
                 </div>
             </div>
         </div>
