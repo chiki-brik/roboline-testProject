@@ -1,4 +1,6 @@
 import useGoodsService from '../../services/GoodsService';
+import Error from '../error/Error';
+import Spinner from '../spinner/Spinner';
 import { useState, useEffect } from 'react';
 
 import './goodsList.scss';
@@ -7,25 +9,31 @@ const GoodsList = (props) => {
     const [offset, setOffset] = useState(0);
     const [goods, setGoods] = useState([]);
     const [goodsEnded, setGoodsEnded] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const {getAllGoods} = useGoodsService();
-
-    console.log('render goodsList');
 
     useEffect(() => { // mounting
         getAllGoods(offset)
             .then(onGoodsLoaded)
-            .catch((e) => console.log(e));
+            .catch((e) => catchError(e));
     }, []); 
 
     const addToCart = (goodsId) => {
         props.addNewItemToCart(goods[goodsId]);
     }
 
+    const catchError = (e) => {
+        setError(true);
+        console.log(`При получении данных возникла ошибка: ${e}`)
+    }
+
     const onReload = () => {
+        setLoading(true);
         getAllGoods(offset)
             .then(onGoodsLoaded)
-            .catch((e) => console.log(e));
+            .catch((e) => catchError(e));
     }
 
     const renderElements = () => {
@@ -57,9 +65,12 @@ const GoodsList = (props) => {
         if (newArray.length < 10) setGoodsEnded(true);
         setGoods(goodsArray => [...goodsArray, ...newArray]);
         setOffset(offset => offset + 10);
+        setLoading(false);
     }
     
     const elements = renderElements();
+    const errorComponent = error ? <Error/> : null;
+    const spinnerComponent = loading && !error ? <Spinner/> : null;
 
     return (
         <section className="goods-list">
@@ -68,9 +79,11 @@ const GoodsList = (props) => {
                     <ul className="goods-items">
                             {elements}
                     </ul>
+                    {errorComponent}
+                    {spinnerComponent}
                     <button 
                         className='reload-btn'
-                        style={{'display': goodsEnded ? 'none' : 'block'}}
+                        style={{'display': goodsEnded || error ? 'none' : 'block'}}
                         onClick={onReload}> 
                         Показать еще 
                     </button>

@@ -2,7 +2,6 @@ import Cart from '../cart/Cart';
 import './header.scss';
 
 const Header = (props) => {
-    console.log('render header');
 
     return (
         <header>

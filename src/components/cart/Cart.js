@@ -2,7 +2,6 @@ import cartImage from '../../resources/img/grocery-cart.png';
 import './cart.scss';
 
 const Cart = (props) => {
-    console.log('render cart');
 
     const totalCount = props.newCartCount;
     const totalSum = props.newCartSum;

@@ -10,14 +10,23 @@ button {
     display: block;
     margin: 0 auto;
     margin-top: 10px;
+    transition: all 1s;
     &.item-btn {
         width: 250px; 
         height: 40px; 
     }
     &.reload-btn {
+        margin-top: 30px;
         font-size: 25px;
         width: 240px;
         height: 60px;
+    }
+    &:hover {
+        background-color: #d26a6a;
+    }
+    &:active{
+        background-color: #cc4d4d;
+        border: 1px solid  #732626;
     }
 }
 
@@ -36,12 +45,18 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     .goods-item {
-        width: 310px;
+        width: 300px;
         height: 440px;
         margin: 10px 20px;
         padding: 3px 5px;
         font-size: 20px;
         font-weight: 400;
+        transition: all .5s;
+        border-radius: 15px;
+        &:hover {
+            scale: 1.05;
+            box-shadow: 0px 0px 15px 7px #f4ce7b;
+        }
         &__price {
             text-align: right;
             margin-top: 10px;

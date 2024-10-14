@@ -31,8 +31,6 @@ const App = () => {
         }
     }, []);
 
-    console.log('render app');
-
     const addNewItemToCart = (item) => {
         const goodsInCart = JSON.parse(localStorage.getItem('cartItems'));
         goodsInCart.push(item);
@@ -45,7 +43,7 @@ const App = () => {
     return (
         <>
             <Header newCartSum={sumInCart} newCartCount={itemsInCart}/>
-            <GoodsList addNewItemToCart = {addNewItemToCart}/>
+            {/* <GoodsList addNewItemToCart = {addNewItemToCart}/> */}
             <Footer/>
         </>
     )
