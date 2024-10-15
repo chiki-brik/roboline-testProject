@@ -43,7 +43,7 @@ const App = () => {
     return (
         <>
             <Header newCartSum={sumInCart} newCartCount={itemsInCart}/>
-            {/* <GoodsList addNewItemToCart = {addNewItemToCart}/> */}
+            <GoodsList addNewItemToCart = {addNewItemToCart}/>
             <Footer/>
         </>
     )
